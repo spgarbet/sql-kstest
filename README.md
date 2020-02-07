@@ -4,6 +4,10 @@ SQL code to compute the Kolmogorov–Smirnov test statistic
 This repository is geared at computing the Kolmogorov-Smirnov test statistic directly
 from SQL.
 
+This implements the following:
+
+![Komogorov-Smirnov D](https://wikimedia.org/api/rest_v1/media/math/render/svg/37b212d1580687a30b3466d465caba67c2f31f99)
+
 # FAQ
 
 1) Why would anyone in their right mind attempt such a thing?
@@ -27,5 +31,9 @@ This is the method proposed. The output needed is n.x, n.y, and the D-statistic 
     w <- c(x, y)
     z <- cumsum(ifelse(order(w) <= n.x, 1/n.x, -1/n.y))
     max(abs(z))
+    
+# References
+
+https://en.wikipedia.org/wiki/Kolmogorov%E2%80%93Smirnov_test
 
 
