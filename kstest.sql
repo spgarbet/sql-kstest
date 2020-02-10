@@ -37,7 +37,6 @@ SELECT category,
                m.value,
                CASE WHEN c.units THEN c.N ELSE 0   END AS Nx,
                CASE WHEN c.units THEN 0   ELSE c.N END AS Ny,
-               --COALESCE(m.units,FALSE) AS units,
                (CASE WHEN m.units THEN 1.0 ELSE -1.0 END)/CAST(c.N AS NUMERIC) AS weight
           FROM measurements m
          INNER JOIN (SELECT category,
@@ -67,7 +66,6 @@ SELECT category,
                m.value,
                CASE WHEN c.units THEN c.N ELSE 0   END AS Nx,
                CASE WHEN c.units THEN 0   ELSE c.N END AS Ny,
-               --COALESCE(m.units,FALSE) AS units,
                (CASE WHEN m.units THEN 1.0 ELSE -1.0 END)/CAST(c.N AS NUMERIC) AS weight
           FROM measurements m
          INNER JOIN (SELECT category,
