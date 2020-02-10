@@ -1,5 +1,6 @@
 # sql-ksttest
-SQL code to compute the Kolmogorov–Smirnov test statistic
+
+SQL code to compute the Kolmogorov–Smirnov 2-sample test statistic across multiple categories of data.
 
 This repository is geared at computing the Kolmogorov-Smirnov test statistic directly
 from SQL.
