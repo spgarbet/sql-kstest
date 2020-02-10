@@ -6,7 +6,7 @@ from SQL.
 
 This implements the following:
 
-![Komogorov-Smirnov D](https://wikimedia.org/api/rest_v1/media/math/render/svg/37b212d1580687a30b3466d465caba67c2f31f99)
+![Komogorov-Smirnov D](https://wikimedia.org/api/rest_v1/media/math/render/svg/ceb824e64e2a30c11cd4ed09319e2740d29b84cc)
 
 # FAQ
 
