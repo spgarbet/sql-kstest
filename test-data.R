@@ -11,9 +11,12 @@ cat(paste0("('A',",y,',NULL),\n'), sep='')
 u <- rnorm(7)
 v <- rexp(11)
 
-cat(paste0("('B',",x,',TRUE),\n'), sep='')
-cat(paste0("('B',",y,',NULL),\n'), sep='')
+cat(paste0("('B',",u,',TRUE),\n'), sep='')
+cat(paste0("('B',",v,',NULL),\n'), sep='')
+
 
 print(ks.test(x,y))
 print(ks.test(u,v))
+
+
 
