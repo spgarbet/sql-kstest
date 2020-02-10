@@ -56,28 +56,27 @@ SELECT category,
        MAX(ABS(w)) AS D,
        MAX(Nx)     AS Nx,
        MAX(Ny)     AS Ny
-  FROM
-(
-SELECT category,
-       SUM(weight) OVER (PARTITION BY category ORDER BY value) AS w,
-       Nx,
-       Ny
-  FROM (SELECT m.category AS category,
-               m.value,
-               CASE WHEN c.units THEN c.N ELSE 0   END AS Nx,
-               CASE WHEN c.units THEN 0   ELSE c.N END AS Ny,
-               (CASE WHEN m.units THEN 1.0 ELSE -1.0 END)/CAST(c.N AS NUMERIC) AS weight
-          FROM measurements m
-         INNER JOIN (SELECT category,
-                            COALESCE(units,FALSE) AS units,
-                            COUNT(*) AS N
-                       FROM measurements
-                      GROUP BY category,
-                               COALESCE(units,FALSE)
-                     ) c 
-               ON m.category=c.category AND
-                  COALESCE(m.units,FALSE)=c.units
-       ) ks
-) ws
+  FROM (SELECT category,
+               SUM(weight) OVER (PARTITION BY category ORDER BY value) AS w,
+               Nx,
+               Ny
+          FROM (SELECT m.category AS category,
+                       m.value,
+                       CASE WHEN c.units THEN c.N ELSE 0   END     AS Nx,
+                       CASE WHEN c.units THEN 0   ELSE c.N END     AS Ny,
+                       (CASE WHEN m.units THEN 1.0 ELSE -1.0 END)/
+                        CAST(c.N AS NUMERIC)                       AS weight
+                  FROM measurements m
+                 INNER JOIN (SELECT category,
+                                    COALESCE(units,FALSE) AS units,
+                                    COUNT(*) AS N
+                               FROM measurements
+                              GROUP BY category,
+                                       COALESCE(units,FALSE)
+                             ) c 
+                       ON m.category=c.category AND
+                          COALESCE(m.units,FALSE)=c.units
+               ) ks
+       ) ws
  GROUP BY category
 ;
